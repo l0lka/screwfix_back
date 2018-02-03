@@ -1,0 +1,23 @@
+# Node build artifacts
+node_modules
+npm-debug.log
+
+# Local development
+*.env
+*.dev
+.DS_Store
+.next
+/.next
+
+# Docker
+Dockerfile
+docker-compose.yml
+
+.idea
+.idea/
+.idea/workspace.xml
+app/build/
+www/bundle.js
+www/assets/
+
+

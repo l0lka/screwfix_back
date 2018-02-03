@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import uniqueValidator from 'mongoose-unique-validator';
+var mongoose = require('mongoose');
+var uniqueValidator = require('mongoose-unique-validator');
 
 var mySchema = new mongoose.Schema({
   username: {

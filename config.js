@@ -1,12 +1,6 @@
-import path from "path";
-
-let config = {};
-
-config.logFileDir = path.join(__dirname, '../../log');
-config.logFileName = 'app.log';
-config.dbHost = process.env.dbHost || 'localhost';
-config.dbPort = process.env.dbPort || '27017';
-config.dbName = process.env.dbName || 'trains';
-config.serverPort = process.env.serverPort || 3000;
+const config = {
+  'secret': 'ilovescotchyscotch',
+  'database': 'mongodb://test2:test2@ds223578.mlab.com:23578/screwfixshop',
+}
 
 export default config;
