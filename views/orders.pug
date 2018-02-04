@@ -1,0 +1,185 @@
+extends layout
+
+block content
+    div
+        .main.container
+            h1 New Order
+            form#newOrder(onsubmit="return false")
+                div.product
+
+                fieldset
+
+                    h2 Product 1
+
+                    fieldset
+
+                        div.form-group
+                            label(for='name') Name:
+                            input#name.form-control(type='text', placeholder='' name='product-name')
+
+                        div.form-group
+                            label(for='items') Items:
+                            input#items.form-control(type='text', placeholder='' name='product-items')
+
+                        div.form-group
+                            label(for='price') Price:
+                            input#price.form-control(type='text', placeholder='' name='product-price')
+
+                        div.form-group
+                            label(for='image') Image:
+                            input#image.form-control(type='text', placeholder='' name='product-image')
+
+
+                div.form-group
+                    label(for='id') Id:
+                    input#id.form-control(type='text', placeholder='' name='id')
+
+                div.form-group
+                    label(for='date') Date:
+                    input#date.form-control(type='text', placeholder='' name='date')
+
+                div.form-group
+                    label(for='orderitems') Items:
+                    input#orderitems.form-control(type='text', placeholder='' name='items')
+
+                div.form-group
+                    label(for='summ') Summ:
+                    input#summ.form-control(type='text', placeholder='' name='summ')
+
+                div.form-group
+                    label(for='delivery') Delivery:
+                    input#delivery.form-control(type='text', placeholder='' name='delivery')
+
+                div.form-group
+                    label(for='total') Total:
+                    input#total.form-control(type='text', placeholder='' name='total')
+
+                div.form-group
+                    label(for='deliveryStatus') Delivery Status:
+                    input#deliveryStatus.form-control(type='text', placeholder='' name='deliveryStatus')
+
+                div.feedback
+
+                    div.form-group
+                        label(for='status') Status:
+                        input#status.form-control(type='text', placeholder='' name='feedback-status')
+
+                    div.form-group
+                        label(for='statusCode') statusCode:
+                        input#statusCode.form-control(type='text', placeholder='' name='feedback-statusCode')
+
+                    div.form-group
+                        label(for='comment') comment:
+                        input#comment.form-control(type='text', placeholder='' name='feedback-comment')
+
+
+                button#submit(type='button') Sign up
+
+    div#demo
+
+    div
+        h1 Orders
+
+        div
+            ul
+            pre
+                - for (var i = orders.length; i>=0; i--)
+                    li
+                        -let id = orders[i];
+                        div(data-id=id).delete delete
+                        = orders[i]
+
+        //ul
+        //   pre
+        //    each val in orders
+        //        li
+        //            div.delete delete
+        //            = val
+
+    script.
+
+      const xhr = (obj, method, id) => {
+        console.log("____DELETE___", obj, method, id);
+        const xhr = new XMLHttpRequest();
+        const url = '/api/orders';
+
+        if(method === 'POST') {
+          xhr.open("POST", url, true);
+          xhr.setRequestHeader("Content-type", "application/json");
+        }
+
+        if (method === 'DELETE') {
+          console.log("____DELETE___", id);
+          xhr.open("DELETE", url+'/'+ id, true);
+          xhr.setRequestHeader("Content-type", "application/json");
+        }
+
+        xhr.onreadystatechange = function () {//Call a function when the state changes.
+          if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+            // Request finished.
+            location.reload();
+          }
+        }
+
+        if(method === 'POST') {
+          xhr.send(obj);
+        }
+
+        if(method === 'DELETE') {
+          xhr.send(null);
+        }
+      }
+
+      const getData = () => {
+        const elements = document.getElementById("newOrder").elements;
+
+        let obj = {};
+        let products = [{}];
+        let feedback = {};
+
+        for (var i = 0; i < elements.length; i++) {
+
+          var item = elements.item(i);
+
+          if( item.name === 'product-name' ||
+            item.name === 'product-items' ||
+            item.name === 'product-price' ||
+            item.name === 'product-image') {
+
+            products[0][(item.name).slice(8)] = item.value;
+
+            obj['products'] = products;
+
+          } else if ( item.name === 'feedback-status' ||
+            item.name === 'feedback-statusCode' ||
+            item.name === 'feedback-comment') {
+
+            feedback[(item.name).slice(9)] = item.value;
+
+            obj['feedback'] = feedback;
+
+          } else {
+            if (item.name) { obj[item.name] = item.value};
+          }
+        }
+
+        xhr(JSON.stringify(obj), 'POST');
+      }
+
+      var submitButton = document.getElementById('submit');
+
+      submitButton.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        getData();
+      });
+
+      document.addEventListener('DOMContentLoaded', () => {
+          let el = document.querySelectorAll('.delete');
+
+          for (var i = 0; i < el.length; i++) {
+                el[i].addEventListener('click', (e) => {
+                   xhr(null, 'DELETE', JSON.parse(e.target.dataset.id)._id);
+                }, false);
+            }
+      });

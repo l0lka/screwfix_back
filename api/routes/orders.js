@@ -2,11 +2,41 @@ import express from 'express';
 let router = express.Router();
 import Order from '../models/order';
 
-const orders = router.get('/', (req, res, next) => {
-  Order.find((err, orders)=>{
-    if(err) { return next(err) }
+router.get('/', (req, res, next) => {
+  Order.find((err, orders) => {
+    if (err) {
+      return next(err);
+    }
     res.json(orders);
   });
 });
 
-export default orders;
+router.post('/', (req, res, next) => {
+  console.log('POST');
+
+  // const userdata =  JSON.parse(req.headers.userdata);
+  //
+  let data = req.body;
+  // data.user = req.user;
+  // user = userdata.id;
+  console.log('data  ', req.body);
+  let order = new Order(
+    data,
+    //  user
+  );
+  console.log('order  ', order);
+
+  order.save(function(err, order, numAffected) {
+    res.json(order);
+  });
+});
+
+router.delete('/:id', (req, res, next) => {
+  console.log(req.params.id)
+  Order.findByIdAndRemove(req.params.id, (err, order) => {
+    if (err) return next(err);
+    res.json(order);
+  })
+});
+
+export default router;
