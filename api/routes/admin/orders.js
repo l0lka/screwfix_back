@@ -2,7 +2,7 @@ const express = require('express');
 
 let router = express.Router();
 
-import Order from '../../models/order';
+const Order = require('../../models/order');
 
 router.get('/', (req, res, next) => {
   Order.find((err, orders)=>{
