@@ -1,9 +1,7 @@
 const express = require('express');
 const Order = require('../models/order');
 
-//import express from 'express';
 let router = express.Router();
-//import Order from '../models/order';
 
 router.get('/', (req, res, next) => {
   Order.find((err, orders) => {

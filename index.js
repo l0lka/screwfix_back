@@ -8,18 +8,6 @@ const connectDatabase = require('./db/database');
 const logger = require('morgan');
 const path = require('path');
 
-
-//import express from 'express';
-//import bodyParser from 'body-parser';
-//import cors from 'cors';
-// import router from './api/routes/index';
-// import orders from './api/routes/orders';
-// import orders_page from './api/routes/admin/orders';
-//
-// import connectDatabase from './db/database';
-// import logger from 'morgan';
-// import path from 'path';
-
 let app = express();
 
 app.use(bodyParser.json());
@@ -40,35 +28,6 @@ const port = process.env.PORT || 3000;
 app.listen(port, function() {
   console.log('Example app listening on port 3000!');
 });
-
-//
-// import cache from 'express-cache-headers'
-// import compression from 'compression'
-// import express from 'express'
-// import logger from 'morgan'
-// import path from 'path'
-//
-// import routes from './routes/routes'
-// import apiRoutes from './routes/api-routes'
-// import attachSocket from './sockets'
-// import connectDatabase from './database'
-//
-// const port = process.env.PORT || 3000
-//
-// let app = express()
-//
-// app.use(cache(60))
-// app.use(compression())
-// app.use(logger('dev'))
-// app.use(express.static(path.join(__dirname, 'assets', 'build')))
-// apiRoutes(app)
-// routes(app)
-// connectDatabase()
-//
-// let server = app.listen(port, () => {
-//   attachSocket(server)
-//   console.log(`Listening on http://localhost:${port}`)
-// })
 
 app.set('view engine', 'pug');
 

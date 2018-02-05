@@ -1,9 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = require('mongoose').Schema;
 
-// import mongoose, { Schema } from 'mongoose';
-// import User from './user';
-
 const orderSchema = new Schema({
   id: String,
   date: String,
