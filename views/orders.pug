@@ -83,7 +83,7 @@ block content
         div
             ul
             pre
-                - for (var i = orders.length; i>=0; i--)
+                - for (var i = orders.length-1; i>=0; i--)
                     li
                         -let id = orders[i];
                         div(data-id=id).delete delete

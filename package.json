@@ -2,10 +2,11 @@
   "name": "shop_back",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "babel-node server.js --presets es2015",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "babel-node index.js --presets es2015",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "npm run build"
   },
   "author": "",
   "license": "ISC",
