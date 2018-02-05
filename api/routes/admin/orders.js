@@ -1,6 +1,5 @@
 const express = require('express');
 
-//import express from 'express';
 let router = express.Router();
 
 import Order from '../../models/order';
