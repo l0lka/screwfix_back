@@ -58,7 +58,6 @@ function getMessage(id, req, res) {
 function createToken(username) {
   var token = jwt.sign(
     {
-      username: username,
       xsrfToken: crypto
         .createHash('md5')
         .update(username)
