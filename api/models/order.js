@@ -11,12 +11,12 @@ const orderSchema = new Schema({
   total: String,
   deliveryStatus: String,
   feedback: Schema.Types.Mixed,
-  //data: {},
-  //user_id: String,
-  // user: {
-  //   type: mongoose.Schema.ObjectId,
-  //   ref: 'User'
-  // }
+  data: {},
+  user_id: String,
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User'
+  }
 });
 
 module.exports = mongoose.model('order', orderSchema);

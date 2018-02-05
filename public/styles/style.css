@@ -1,0 +1,22 @@
+body {
+    padding: 5px;
+}
+
+a {
+    color: #00B7FF;
+}
+
+.delete {
+    margin: -.5em 1em 1em 1em;
+    color: #f00;
+    border: 1px solid red;
+    float: right;
+    cursor: pointer;
+}
+
+li {
+    margin-top: 1em;
+    padding: 1em 1em 1em 3em;
+    font-size: .8em;
+    background: #dadada;
+}
