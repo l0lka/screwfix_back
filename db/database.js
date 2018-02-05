@@ -1,15 +1,18 @@
-import mongoose from 'mongoose';
-import config from '../config';
+const mongoose = require('mongoose');
+const config = require('../config');
+
+// import mongoose from 'mongoose';
+// import config from '../config';
 
 const dbUrl = process.env.MONGODB_URI || config.database;
 
-export default () => {
+module.exports = () => {
   mongoose.connect(dbUrl).then(
     () => {
       console.log(`MongoDB is connected.`);
       },
     err => {
-      console.log(`************* Mongoose Connection ERROR: ${err}`);
+      console.log(`Mongoose Connection ERROR: ${err}`);
     }
   );
 }

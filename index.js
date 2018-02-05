@@ -1,13 +1,24 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import router from './api/routes/index';
-import orders from './api/routes/orders';
-import orders_page from './api/routes/admin/orders';
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const router = require('./api/routes/index');
+const orders = require('./api/routes/orders');
+const orders_page = require('./api/routes/admin/orders');
+const connectDatabase = require('./db/database');
+const logger = require('morgan');
+const path = require('path');
 
-import connectDatabase from './db/database';
-import logger from 'morgan';
-import path from 'path';
+
+//import express from 'express';
+//import bodyParser from 'body-parser';
+//import cors from 'cors';
+// import router from './api/routes/index';
+// import orders from './api/routes/orders';
+// import orders_page from './api/routes/admin/orders';
+//
+// import connectDatabase from './db/database';
+// import logger from 'morgan';
+// import path from 'path';
 
 let app = express();
 
