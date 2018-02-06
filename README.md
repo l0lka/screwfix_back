@@ -19,4 +19,8 @@ P: Qwerty!23
 
 https://screwfix-shop-back.herokuapp.com
 
+** Available API **
+
+https://screwfix-shop-back.herokuapp.com/api/orders
+
 
