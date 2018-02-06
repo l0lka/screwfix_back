@@ -15,7 +15,7 @@ const dotenv = require('dotenv');
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
 const flash = require('connect-flash');
-const config = reqiure('./config');
+const config = require('./config');
 
 require('dotenv').config();
 
