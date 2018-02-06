@@ -10,6 +10,10 @@
 
 This sample created to serve authorizated users with REST API for Screwfix test mobile shop.
 
+*** Logs on Heroku ***
+
+* heroku logs --source app
+
 ** Test user: **
 
 L: screwfix@epam.com
@@ -22,5 +26,6 @@ https://screwfix-shop-back.herokuapp.com
 ** Available API **
 
 https://screwfix-shop-back.herokuapp.com/api/orders
+
 
 
