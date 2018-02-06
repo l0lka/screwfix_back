@@ -63,7 +63,7 @@ passport.deserializeUser(function(user, done) {
 });
 
 app.use(session({
-  secret: process.env.SECRET,
+  secret: process.env.SECRET || config.secret,
   resave: true,
   saveUninitialized: true
 }));
