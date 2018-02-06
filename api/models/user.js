@@ -11,10 +11,15 @@ var mySchema = new mongoose.Schema({
   password: {
     type: String,
     required: true
-  }
-}, {
-  collection: 'users'
-});
+  },
+  displayName: String,
+  user_id: String,
+  picture: String,
+},
+  {
+    collection: 'users',
+
+  });
 
 mySchema.plugin(uniqueValidator);
 

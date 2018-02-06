@@ -1,20 +1,11 @@
 const express = require('express');
 const passport = require('passport');
 const router = express.Router();
-
-// router.get('/', (req, res, next) => {
-//   //res.render('index', { title: 'Hey', message: 'Hello there!' });
-//   // res.send('Hello');
-// });
-
-
-// AUTH0_CLIENT_ID='Gn9MQKXEhKaw5DZ05kgFWkRHM3lGClEo',
-//   AUTH0_DOMAIN='screwfix.auth0.com',
-//   AUTH0_CLIENT_SECRET='ruLulexO2xsbhAw7drTMmq3Hp1ol_rsR4DMwVBShAOqCjFm3HMv9TByamyNkbqZ5'
+require('dotenv').config();
 
 const env = {
-  AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID || 'Gn9MQKXEhKaw5DZ05kgFWkRHM3lGClEo',
-  AUTH0_DOMAIN: process.env.AUTH0_DOMAIN || 'screwfix.auth0.com',
+  AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
+  AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
   AUTH0_CALLBACK_URL:
   process.env.AUTH0_CALLBACK_URL || 'http://localhost:3000/callback'
 };

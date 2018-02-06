@@ -15,6 +15,7 @@ const dotenv = require('dotenv');
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
 const flash = require('connect-flash');
+require('dotenv').config();
 
 dotenv.load();
 
@@ -23,6 +24,12 @@ let app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
+
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 
 app.use(logger('dev'));
 connectDatabase();
@@ -53,7 +60,7 @@ passport.deserializeUser(function(user, done) {
 });
 
 app.use(session({
-  secret: 'shhhhhhhhh',
+  secret: process.env.SECRET,
   resave: true,
   saveUninitialized: true
 }));
@@ -80,6 +87,7 @@ app.use(function(req, res, next) {
   res.locals.loggedIn = false;
   if (req.session.passport && typeof req.session.passport.user != 'undefined') {
     res.locals.loggedIn = true;
+    console.log('Check  login ...', req.session)
   }
   next();
 });
@@ -130,43 +138,3 @@ app.listen(port, function() {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-function unless(paths, middleware) {
-  return function(req, res, next) {
-    let isHave = false;
-    paths.forEach(path => {
-      if (path === req.path || req.path.includes(path)) {
-        isHave = true;
-        return;
-      }
-    });
-    if (isHave) {
-      return next();
-    } else {
-      return middleware(req, res, next);
-    }
-  };
-}
-
-function getMessage(id, req, res) {
-  Message.findById(id, function(err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });
-}
-
-function createToken(username) {
-  var token = jwt.sign(
-    {
-      xsrfToken: crypto
-        .createHash('md5')
-        .update(username)
-        .digest('hex'),
-    },
-    'jwtSecret',
-    {
-      expiresIn: 60 * 60,
-    },
-  );
-
-  return token;
-}

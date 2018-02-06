@@ -11,8 +11,8 @@ const orderSchema = new Schema({
   total: String,
   deliveryStatus: String,
   feedback: Schema.Types.Mixed,
-  data: {},
   user_id: String,
+  data: Schema.Types.Mixed,
   user: {
     type: mongoose.Schema.ObjectId,
     ref: 'User'

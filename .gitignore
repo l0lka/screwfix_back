@@ -19,6 +19,8 @@ docker-compose.yml
 app/build/
 www/bundle.js
 www/assets/
+auth0-variables.ts
+.env
 
 
 
